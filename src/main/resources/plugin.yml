@@ -1,0 +1,6 @@
+name: HGAbilities2021
+version: '${project.version}'
+main: me.stahrry.hgabilities2021
+authors: [ stahrry ]
+description: New Hunger Games abilities for the Bukkit Games Spigot plugin!
+website: https://github.com/adcub
