@@ -1,8 +1,11 @@
 package me.stahrry.hgabilities2021;
 
-//import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
 import de.ftbastler.bukkitgames.api.BukkitGamesAPI;
-//import de.ftbastler.bukkitgames.api.GameEnableEvent;
 import de.ftbastler.bukkitgames.api.GameStartEvent;
 import de.ftbastler.bukkitgames.enums.FeastState;
 import de.ftbastler.bukkitgames.enums.GameState;
@@ -24,6 +27,7 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
@@ -37,9 +41,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class AbilitiesListener implements Listener {
-    //Logger log = BGAbilities.getPluginLogger();
     BukkitGamesAPI api = HGAbilities2021.getBgAPI();
-    //Plugin plugin = BGAbilities.getInstance();
+    Plugin plugin = HGAbilities2021.getInstance();
     FileConfiguration configFile = HGAbilities2021.getConfigFile();
 
     Hashtable<Player, Queue<PotionEffectType>> alchemistDict = new Hashtable<>();
@@ -116,6 +119,18 @@ public class AbilitiesListener implements Listener {
             setTrawlerItems();
             trawlerItemsSet = true;
         }
+
+        ProtocolLibrary.getProtocolManager().addPacketListener(
+                new PacketAdapter(plugin, PacketType.Play.Server.CHAT) {
+            @Override
+            public void onPacketSending (PacketEvent event) {
+                PacketContainer packet = event.getPacket();
+                String packetString = packet.getChatComponents().read(0).toString();
+                if (packetString.contains("Cooldown")) {
+                    event.setCancelled(true);
+                }
+            }});
+
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
