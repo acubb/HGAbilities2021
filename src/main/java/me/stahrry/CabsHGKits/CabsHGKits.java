@@ -1,4 +1,4 @@
-package me.stahrry.hgabilities2021;
+package me.stahrry.CabsHGKits;
 
 import de.ftbastler.bukkitgames.api.AbilityExistsException;
 import de.ftbastler.bukkitgames.api.BukkitGamesAPI;
@@ -7,14 +7,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class HGAbilities2021 extends JavaPlugin {
+public final class CabsHGKits extends JavaPlugin {
     private static Logger logger;
     private static BukkitGamesAPI bgAPI;
-    private static HGAbilities2021 instance;
+    private static CabsHGKits instance;
     private static FileConfiguration configFile;
 
-    public HGAbilities2021 () {
-        HGAbilities2021.instance = this;
+    public CabsHGKits () {
+        CabsHGKits.instance = this;
     }
 
     public static Logger getPluginLogger() {
@@ -25,8 +25,8 @@ public final class HGAbilities2021 extends JavaPlugin {
         return bgAPI;
     }
 
-    public static HGAbilities2021 getInstance() {
-        return (HGAbilities2021.instance);
+    public static CabsHGKits getInstance() {
+        return (CabsHGKits.instance);
     }
 
     public static FileConfiguration getConfigFile () {
@@ -68,7 +68,7 @@ public final class HGAbilities2021 extends JavaPlugin {
         double SHADOW_DARK_DMG = Double.parseDouble(configFile.getString("SHADOW_DARK_DMG"));
         int TRAWLER_FIRE = Integer.parseInt(configFile.getString("TRAWLER_FIRE"));
         int TRAWLER_POISON = Integer.parseInt(configFile.getString("TRAWLER_POISON"));
-        int VAMPIRE_FIRE_RES = Integer.parseInt(configFile.getString("VAMPIRE_FIRE_RES"));
+        int VAMP_FIRE_RES = Integer.parseInt(configFile.getString("VAMP_FIRE_RES"));
         double VAMP_START_LS = Double.parseDouble(configFile.getString("VAMP_START_LS"));
         double VAMP_PLAYER_KILL_LS = Double.parseDouble(configFile.getString("VAMP_PLAYER_KILL_LS"));
         double VAMP_MOB_KILL_LS = Double.parseDouble(configFile.getString("VAMP_MOB_KILL_LS"));
@@ -103,7 +103,7 @@ public final class HGAbilities2021 extends JavaPlugin {
             getBgAPI().registerNewAbility(41, "Dirty Tower Player", "You break dirt blocks instantly.");
             getBgAPI().registerNewAbility(42, "Fletcher", "Chickens will always drop 2 feathers, and gravel will always drop 1 flint.");
             getBgAPI().registerNewAbility(43, "Sanguine Power", "You have " + VAMP_START_LS + "% life steal. Every time you kill a player you drink their blood and gain an additional " + VAMP_PLAYER_KILL_LS + "% life steal. Killing any other mob grants an additional " + VAMP_MOB_KILL_LS + "% life steal. Life steal is capped at " + VAMP_LS_CAP + "%.");
-            getBgAPI().registerNewAbility(44, "Solar Weakness", "When exposed directly to sunlight you will catch on fire. You can consume sugarcane (right click) to grant yourself immunity to fire for " + VAMPIRE_FIRE_RES + " seconds.");
+            getBgAPI().registerNewAbility(44, "Solar Weakness", "When exposed directly to sunlight you will catch on fire. You can consume sugarcane (right click) to grant yourself immunity to fire for " + VAMP_FIRE_RES + " seconds.");
             getBgAPI().registerNewAbility(45, "Turn the Tides", "Fishing is now instant for you (normal fishing is disabled). You can fish for an array of items from rotten flesh to arrows, to an iron sword. The more valuable an item is, the rarer it is to catch.");
             getBgAPI().registerNewAbility(46, "Seaman's Curse", "Holding a Tropical Fish in your offhand gives your melee hits a " + TRAWLER_FIRE + "% chance to ignite the target for 3 seconds. Holding a Pufferfish in your offhand gives your melee hits a " + TRAWLER_POISON + "% chance to poison the target for 4 seconds.");
             getBgAPI().registerNewAbility(47, "Resupply at Port", "Spiders you kill will always drop 1 string.");
@@ -119,11 +119,28 @@ public final class HGAbilities2021 extends JavaPlugin {
             getBgAPI().registerNewAbility(66, "Crop Rotation", "The most recent block you tilled with any one type of hoe saves that block. Using that same type of hoe (right click) teleports you, and any entities in a 3 block radius to that saved block. Has a " + SCARECROW_CD + " second cool down.");
             getBgAPI().registerNewAbility(67, "Forester", "You chop down trees instantly. Must be wielding an axe, or a sword.");
 
-            Bukkit.getPluginManager().registerEvents(new AbilitiesListener(), this);
+            Bukkit.getPluginManager().registerEvents(new HGSupport(), this);
+            Bukkit.getPluginManager().registerEvents(new Alchemist(), this);
+            Bukkit.getPluginManager().registerEvents(new Assassin(), this);
+            Bukkit.getPluginManager().registerEvents(new Chameleon(), this);
+            Bukkit.getPluginManager().registerEvents(new Dryad(), this);
+            Bukkit.getPluginManager().registerEvents(new Hunter(), this);
+            Bukkit.getPluginManager().registerEvents(new Icarus(), this);
+            Bukkit.getPluginManager().registerEvents(new Jumper(), this);
+            Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
+            Bukkit.getPluginManager().registerEvents(new Pudge(), this);
+            Bukkit.getPluginManager().registerEvents(new Pyro(), this);
+            Bukkit.getPluginManager().registerEvents(new Sapper(), this);
+            Bukkit.getPluginManager().registerEvents(new Scarecrow(), this);
+            Bukkit.getPluginManager().registerEvents(new Shadow(), this);
+            Bukkit.getPluginManager().registerEvents(new Stomper(), this);
+            Bukkit.getPluginManager().registerEvents(new Trawler(), this);
+            Bukkit.getPluginManager().registerEvents(new Vampire(), this);
+            Bukkit.getPluginManager().registerEvents(new Viper(), this);
         }
         catch (AbilityExistsException e) {
             e.printStackTrace();
         }
-
     }
 }

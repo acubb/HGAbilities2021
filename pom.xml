@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.stahrry</groupId>
-    <artifactId>HGAbilities2021</artifactId>
+    <artifactId>CabsHGKits</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>HGAbilities2021</name>
+    <name>CabsHGKits</name>
 
-    <description>New Hunger Games abilities for the Bukkit Games Spigot plugin!</description>
+    <description>New Hunger Games abilities and kits for the Bukkit Games Spigot plugin!</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
