@@ -5,4 +5,4 @@ A ready made server template with HGKits already setup can be found here:
 
 Notes:
   - Requires BukkitGames, LibsDisguises, and ProtocolLib plugins
-  - This repository holds the source code for the HGAbilities2021 plugin
+  - This repository holds the source code for the HGKits plugin
